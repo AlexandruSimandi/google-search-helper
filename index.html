@@ -2,76 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css">
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/materialize/dist/js/materialize.min.js"></script>
+<!--    <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css">-->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
     <script src="main.js"></script>
+
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+    <script src="app.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <h4>Simple search</h4>
-        <div class="input-field col">
-            <input id="simple-search" type="text">
-            <label for="simple-search">Search</label>
-        </div>
-        <h4>File type search</h4>
-        <div class="input-field col">
-            <input id="filetype-search-type" type="text" >
+    <div layout-padding layout-margin ng-app="app" ng-controller="search">
+        <h4 class="md-title">Simple search</h4>
+        <md-input-container class="md-block">
+            <label>First name</label>
+            <input ng-model="simpleSearchModel" ng-keydown="$event.which === 13 && simpleSearch()">
+        </md-input-container>
+        <h4 class="md-title">File type search</h4>
+        <md-input-container class="md-block">
+            <input ng-model="filetypeSearchTypeModel" id="filetype-search-type" type="text">
             <label for="filetype-search-type">File type</label>
-        </div>
-        <div class="input-field col">
-            <input id="filetype-search-name" type="text" >
+        </md-input-container>
+        <md-input-container class="md-block">
+            <input ng-model="filetypeSearchNameModel" ng-keydown="$event.which === 13 && filetypeSearch()" id="filetype-search-name" type="text" >
             <label for="filetype-search-name">Name</label>
-        </div>
-        <h4>Search on site</h4>
-        <div class="input-field col">
-            <input id="site-search-url" type="text">
+        </md-input-container>
+        <h4 class="md-title">Search on site</h4>
+        <md-input-container class="md-block">
+            <input ng-model="siteSearchUrlModel" id="site-search-url" type="text">
             <label for="site-search-url">Site URL</label>
-        </div>
-        <div class="input-field col">
-            <input id="site-search-name" type="text">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <input ng-model="siteSearchTextModel" ng-keydown="$event.which === 13 && siteSearch()" id="site-search-name" type="text">
             <label for="site-search-name">Search for</label>
-        </div>
-        <h4>Weather on certain day</h4>
-        <div class="section">
-            <label for="weather-search-day">Day</label>
-            <input id="weather-search-day" type="date" class="datepicker">
-        </div>
-        <div class="input-field col">
-            <input id="weather-search-place" type="text" >
+        </md-input-container>
+        <h4 class="md-title">Weather on certain day</h4>
+        <md-datepicker md-current-view="month" ng-model="weatherSearchDateModel"></md-datepicker>
+        <md-input-container class="md-block">
+            <input ng-model="weatherSearchPlaceModel" ng-keydown="$event.which === 13 && weatherSearch()" id="weather-search-place" type="text" >
             <label for="weather-search-place">Place</label>
-        </div>
-        <h4>Word definition</h4>
-        <div class="input-field col">
-            <input id="definition-search" type="text" >
+        </md-input-container>
+        <h4 class="md-title">Word definition</h4>
+        <md-input-container class="md-block">
+            <input ng-model="definitionSearchModel" ng-keydown="$event.which === 13 && definitionSearch()" id="definition-search" type="text" >
             <label for="definition-search">Word</label>
-        </div>
-        <h4>Synonym/Antonym</h4>
-        <p>
-            <input name="sinan" id="sinan1" type="radio" value="synonym" />
-            <label for="sinan1">Synonym</label>
-        </p>
-        <p>
-            <input name="sinan" id="sinan2" type="radio" value="antonym" />
-            <label for="sinan2">Antonym</label>
-        </p>
-        <div class="input-field col">
-            <input id="sinan-search" type="text" >
+        </md-input-container>
+        <h4 class="md-title">Synonym/Antonym</h4>
+        <md-radio-group ng-model="sinanSearchSinanModel">
+          <md-radio-button value="synonym" class="md-primary">Synonym</md-radio-button>
+          <md-radio-button value="antonym">Antonym</md-radio-button>
+        </md-radio-group>
+        <md-input-container class="md-block">
+            <input ng-model="sinanSearchWordModel" ng-keydown="$event.which === 13 && sinanSearch()" id="sinan-search" type="text" >
             <label for="sinan-search">Word</label>
-        </div>
-        <h4>Title search</h4>
-        <div class="input-field col">
-            <input id="title-search" type="text" >
+        </md-input-container>
+        <h4 class="md-title">Title search</h4>
+        <md-input-container class="md-block">
+            <input ng-model="titleSearchModel" ng-keydown="$event.which === 13 && titleSearch()" id="title-search" type="text" >
             <label for="title-search">Title</label>
-        </div>
-        <h4>Related to site</h4>
-        <div class="input-field col">
-            <input id="related-search" type="text" >
+        </md-input-container>
+        <h4 class="md-title">Related to site</h4>
+        <md-input-container class="md-block">
+            <input ng-model="relatedSearchModel" ng-keydown="$event.which === 13 && relatedSearch()" id="related-search" type="text" >
             <label for="related-search">Site URL</label>
-        </div>
-        <h4><a href="https://images.google.com/">Search by image</a></h4>
+        </md-input-container>
+        <h4 class="md-title"><a href="https://images.google.com/">Search by image</a></h4>
     </div>
 </body>
 </html>
