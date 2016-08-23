@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngMaterial']);
+var app = angular.module('app',['ngMaterial','angularMoment']);
 
 app.controller('search', function($scope){
     $scope.simpleSearch = function(){
@@ -14,7 +14,7 @@ app.controller('search', function($scope){
     }
 
     $scope.weatherSearch = function(){
-        window.location = window.location = 'https://www.google.ro/#q=weather ' + $scope.weatherSearchPlaceModel + ' ' + $scope.weatherSearchDateModel;
+        window.location = window.location = 'https://www.google.ro/#q=weather ' + $scope.weatherSearchPlaceModel + ' ' + moment($scope.weatherSearchDateModel).format('DD/MM/YYYY');
     }
 
     $scope.definitionSearch = function(){
