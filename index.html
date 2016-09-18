@@ -31,7 +31,7 @@
         <div layout="row" ng-repeat="filter in appliedFilters">
             <md-button flex="5" ng-click="removeFilter($index)">remove</md-button>
             <md-input-container flex class="md-block">
-                <label>{{filter.name}}</label>
+                <label>{{filter.label}}</label>
                 <input ng-model="filter.value" ng-keydown="$event.which === 13 && searchWithFilters()">
             </md-input-container>
         </div>

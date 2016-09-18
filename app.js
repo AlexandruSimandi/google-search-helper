@@ -4,19 +4,23 @@ var app = angular.module('app',['ngMaterial','angularMoment']);
 app.controller('search', function($scope) {
     $scope.searchFilters = [
         {
-            name: 'Is file type',
+            name: 'File type',
+            label: 'Search only for this type of files',
             query: 'filetype:'
         },
         {
-            name: 'Has inside URL',
+            name: 'Contains inside URL',
+            label: 'URL will contain',
             query: 'inurl:'
         },
         {
-            name: 'Has page title',
+            name: 'Page title',
+            label: 'Pages will have the title',
             query: 'intitle:'
         },
         {
-            name: 'Is on this site',
+            name: 'Inside a site',
+            label: 'Search only on this specific site',
             query: 'onsite:'
         }
     ];
